@@ -474,7 +474,6 @@ def Uncertainty_Aware(x,gt_src,dict):
             mean, std = meanUAED(image, distribution='gs')
             outputs_dist = Independent(Normal(loc=mean, scale=std + 0.001), 1)
             outputs = torch.sigmoid(outputs_dist.rsample())
-            print(torch.sum((outputs == 1)))
             zmask = outputs >= 0.9
             counter += 1
             ada = (k + 1) / int(img_src.shape[2] / 3)
